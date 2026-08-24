@@ -7,7 +7,8 @@ This project does not assume that Claude, NotebookLM, Gemini, DeepSeek, Perplexi
 ## Quick Start
 
 ```powershell
-cd outputs\bimnix-orchestrator-v1
+git clone https://github.com/impenitentzheng/bimnix-orchestrator.git
+cd bimnix-orchestrator
 $env:PYTHONPATH = "src"
 python -m unittest discover -s tests
 python -m bimnix_orchestrator.cli init-db
