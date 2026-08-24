@@ -15,6 +15,12 @@ Keep owner work under 30 minutes per week:
 
 The owner queue is any event routed to `owner`.
 
+Run:
+
+```powershell
+python -m bimnix_orchestrator.cli owner-queue
+```
+
 Important states:
 
 - `CLAIM_REQUIRES_APPROVAL`

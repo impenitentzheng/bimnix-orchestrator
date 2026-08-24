@@ -80,6 +80,16 @@ class EventBus:
             rows = conn.execute("SELECT * FROM events ORDER BY created_at DESC LIMIT ?", (limit,)).fetchall()
             return [self._row_to_event(row) for row in rows]
 
+    def list_by_route(self, route_to: str, limit: int = 50) -> list[Event]:
+        self.init()
+        with sqlite3.connect(self.db_path) as conn:
+            conn.row_factory = sqlite3.Row
+            rows = conn.execute(
+                "SELECT * FROM events WHERE route_to = ? ORDER BY created_at DESC LIMIT ?",
+                (route_to, limit),
+            ).fetchall()
+            return [self._row_to_event(row) for row in rows]
+
     @staticmethod
     def _row_to_event(row: sqlite3.Row) -> Event:
         return Event(

@@ -20,6 +20,7 @@ Use the returned event `id`:
 ```powershell
 python -m bimnix_orchestrator.cli run-once <event-id>
 python -m bimnix_orchestrator.cli list-events
+python -m bimnix_orchestrator.cli owner-queue
 ```
 
 ## MVP Behavior
@@ -28,6 +29,7 @@ python -m bimnix_orchestrator.cli list-events
 - unverified NotebookLM/Claude/Gemini/DeepSeek capabilities stop or fall back conservatively
 - official Meta/Instagram publishing is blocked until capability verification
 - every state transition is appended to SQLite for audit trail
+- owner-routed exceptions can be reviewed with `owner-queue`
 
 ## GitHub PR Workflow
 

@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import json
 import logging
+from collections import defaultdict
 from pathlib import Path
 
 from .capabilities import CapabilityRegistry
@@ -31,6 +32,9 @@ def main() -> None:
 
     run = sub.add_parser("run-once")
     run.add_argument("event_id")
+
+    owner_queue = sub.add_parser("owner-queue")
+    owner_queue.add_argument("--limit", type=int, default=50)
 
     sub.add_parser("list-events")
     args = parser.parse_args()
@@ -78,6 +82,12 @@ def main() -> None:
 
     if args.command == "list-events":
         print(json.dumps([_event_dict(event) for event in bus.list_recent()], ensure_ascii=False, indent=2))
+        return
+
+    if args.command == "owner-queue":
+        events = bus.list_by_route("owner", limit=args.limit)
+        print(json.dumps(_owner_queue(events), ensure_ascii=False, indent=2))
+        return
 
 
 def _event_dict(event: Event) -> dict:
@@ -91,6 +101,37 @@ def _event_dict(event: Event) -> dict:
         "exception_reason": event.exception_reason,
         "payload": event.payload,
     }
+
+
+def _owner_queue(events: list[Event]) -> dict:
+    grouped = defaultdict(list)
+    for event in events:
+        grouped[event.state].append(
+            {
+                "id": event.id,
+                "created_at": event.created_at,
+                "reason": event.exception_reason,
+                "title": event.payload.get("title"),
+                "claim": event.payload.get("claim"),
+                "next_owner_action": _owner_action(event.state),
+            }
+        )
+    return {
+        "route_to": "owner",
+        "total": len(events),
+        "groups": dict(grouped),
+    }
+
+
+def _owner_action(state: PipelineState) -> str:
+    actions = {
+        PipelineState.CLAIM_REQUIRES_APPROVAL: "Approve, reject, or rewrite the exact claim.",
+        PipelineState.COPYRIGHT_RISK: "Confirm license, replace the asset, or reject the candidate.",
+        PipelineState.BUSINESS_DM: "Reply personally or assign a sales/support follow-up.",
+        PipelineState.TECHNICAL_RESULT_UNVERIFIED: "Attach verified evidence or send to BIM technical review.",
+        PipelineState.PUBLISHING_FAILED: "Check publishing capability, account permissions, and retry policy.",
+    }
+    return actions.get(state, "Review and decide the next step.")
 
 
 if __name__ == "__main__":
