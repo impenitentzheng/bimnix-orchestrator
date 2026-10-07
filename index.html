@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>BIMNIX 0.17 — Experimental Demo</title>
+<meta name="description" content="BIMNIX 0.17 experimental demo. Try it, break it, and tell us what does not work." />
+<style>
+:root{--bg:#0d0d0d;--card:#151515;--line:#2b2b2b;--text:#f3f3f3;--muted:#aaa;--accent:#ff6a00;--ok:#7ed993}
+*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--text);font:15px/1.55 Arial,"Noto Sans Thai",sans-serif}
+.wrap{max-width:980px;margin:auto;padding:28px 18px 56px}.nav{display:flex;justify-content:space-between;align-items:center;margin-bottom:60px}.brand{font-weight:900;letter-spacing:.08em}.tag{font-size:12px;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:5px 9px}.hero{max-width:760px}.eyebrow{color:var(--accent);font-weight:800;letter-spacing:.08em;font-size:12px}.hero h1{font-size:clamp(40px,7vw,76px);line-height:.98;margin:12px 0 20px}.hero p{font-size:18px;color:#c7c7c7;max-width:680px}.actions{display:flex;gap:10px;flex-wrap:wrap;margin:28px 0}.btn{border:1px solid #444;background:#1c1c1c;color:white;border-radius:12px;padding:12px 16px;font-weight:800;cursor:pointer;text-decoration:none}.btn.primary{background:var(--accent);border-color:var(--accent)}.btn[aria-disabled=true]{opacity:.5;cursor:not-allowed}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:46px}.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px}.card b{display:block;font-size:18px;margin-bottom:6px}.card span{color:var(--muted)}.note{margin-top:30px;color:var(--muted);font-size:13px}.modal{position:fixed;inset:0;background:#000a;display:none;align-items:center;justify-content:center;padding:18px;z-index:20}.modal.open{display:flex}.box{background:#171717;border:1px solid #333;border-radius:18px;padding:22px;width:min(520px,100%)}.box h2{margin-top:0}label{display:block;margin:13px 0 5px;color:#ddd}input,select{width:100%;background:#222;border:1px solid #444;color:#fff;padding:10px;border-radius:9px;font:inherit}.row{display:flex;gap:10px;align-items:flex-start;margin-top:14px}.row input{width:auto;margin-top:4px}.status{margin-top:12px;min-height:24px;color:var(--muted)}.status.ok{color:var(--ok)}.status.err{color:#ff9f9f}.close{float:right;background:none;border:0;color:#aaa;font-size:24px;cursor:pointer}@media(max-width:720px){.grid{grid-template-columns:1fr}.nav{margin-bottom:38px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="nav"><div class="brand">BIMNIX</div><div class="tag">0.17 · EXPERIMENTAL DEMO</div></div>
+  <section class="hero">
+    <div class="eyebrow">REAL-WORLD VALIDATION</div>
+    <h1>Try it.<br>Break it.<br>Tell me why.</h1>
+    <p>BIMNIX คือ prototype สำหรับ workflow งาน Tender/BIM ที่เชื่อมแบบ → โมเดล → Quantity → BOQ → Comparison → Handoff ตอนนี้เป้าหมายไม่ใช่เพิ่ม feature แต่คือพิสูจน์กับคนใช้งานจริง</p>
+    <div class="actions">
+      <button class="btn primary" id="downloadBtn">Download BIMNIX 0.17</button>
+      <a class="btn" id="feedbackBtn" href="#">Send Feedback</a>
+      <span class="btn" aria-disabled="true" title="เปิดหลัง validation รอบแรก">Online Demo — next</span>
+    </div>
+    <div class="grid">
+      <div class="card"><b>No install</b><span>ไฟล์ HTML เดียว เปิดด้วย Chrome / Edge</span></div>
+      <div class="card"><b>Not production-ready</b><span>รุ่นทดลองเพื่อ validation ไม่ใช่ซอฟต์แวร์ที่รับรองสำหรับ tender จริง</span></div>
+      <div class="card"><b>Your feedback matters</b><span>Bug, usability, trust และ workflow gap มีค่ากว่า feature request</span></div>
+    </div>
+    <div class="note">เราบันทึก event การเข้าหน้า Demo, การกดดาวน์โหลด และ feedback เพื่อวัดการใช้งานจริง ฐานข้อมูล BIMNIX ไม่บันทึก IP address; ผู้ให้บริการ hosting อาจมี technical logs ตามนโยบายของผู้ให้บริการ · <a href="privacy.html" style="color:#ccc">Privacy</a></div>
+  </section>
+</div>
+<div class="modal" id="modal"><div class="box"><button class="close" id="closeBtn" aria-label="close">×</button><h2>Download BIMNIX 0.17</h2><p style="color:#aaa">ขอข้อมูลสั้น ๆ เพื่อให้รู้ว่าใครกำลังทดลอง และติดต่อขอฟีดแบ็กได้เฉพาะกรณีที่คุณยินยอม</p>
+<label>ชื่อ</label><input id="name" autocomplete="name" maxlength="160" />
+<label>Email</label><input id="email" type="email" autocomplete="email" maxlength="320" />
+<label>Role</label><select id="role"><option value="">เลือก</option><option>Architect</option><option>BIM</option><option>QS</option><option>Engineer</option><option>Contractor</option><option>Student</option><option>Other</option></select>
+<label>Organization (optional)</label><input id="org" maxlength="160" />
+<div class="row"><input type="checkbox" id="consent"><label for="consent" style="margin:0">ยินยอมให้ BIMNIX เก็บข้อมูลข้างต้นและข้อมูลการดาวน์โหลดเพื่อการทดสอบ/ปรับปรุง Demo</label></div>
+<div class="row"><input type="checkbox" id="contact"><label for="contact" style="margin:0">ยินดีให้ติดต่อเพื่อขอ feedback หรือทดลองกับ workflow จริง</label></div>
+<input id="companyWebsite" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true" />
+<button class="btn primary" id="submitBtn" style="margin-top:18px;width:100%">Continue to download</button><div class="status" id="status"></div>
+</div></div>
+<script>
+(()=>{
+const ENDPOINT='https://givcocwxdjvrvdyvgtvu.supabase.co/functions/v1/demo-intake';
+const FEEDBACK='https://givcocwxdjvrvdyvgtvu.supabase.co/functions/v1/demo-feedback';
+// Temporary Drive mirror. Replace with a public direct-download mirror before IG launch.
+const DOWNLOAD_URL='https://drive.google.com/uc?export=download&id=1N78n3ARN7yH0qaRLyIyUpoj9RWhET2sy';
+const qs=new URLSearchParams(location.search); const U={utm_source:qs.get('utm_source'),utm_medium:qs.get('utm_medium'),utm_campaign:qs.get('utm_campaign')};
+const source=U.utm_source||((document.referrer||'').includes('instagram')?'instagram':(document.referrer||'').includes('facebook')?'facebook':'direct');
+const get=(k)=>{try{return localStorage.getItem(k)}catch{return null}}, set=(k,v)=>{try{localStorage.setItem(k,v)}catch{}};
+let sid=get('bimnix_demo_session'); if(!sid){sid=crypto.randomUUID?.()||('s-'+Date.now()+'-'+Math.random().toString(36).slice(2));set('bimnix_demo_session',sid)}
+let tester=get('bimnix_demo_tester');
+async function post(body){const r=await fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({...body,session_id:sid,source,...U,page_path:location.pathname,referrer:document.referrer||null})});const d=await r.json().catch(()=>({}));if(!r.ok)throw new Error(d.error||'request_failed');return d}
+post({type:'event',event_name:get('bimnix_demo_site_seen')?'return_visit':'visit',tester_id:tester||null,metadata:{surface:'demo_landing'}}).catch(()=>{});set('bimnix_demo_site_seen','1');
+const feedback=document.getElementById('feedbackBtn'); function refreshFeedback(){feedback.href=FEEDBACK+'?sid='+encodeURIComponent(sid)+(tester?'&tester='+encodeURIComponent(tester):'')+'&src='+encodeURIComponent(source)} refreshFeedback();
+feedback.addEventListener('click',()=>post({type:'event',event_name:'feedback_open',tester_id:tester||null,metadata:{surface:'demo_landing'}}).catch(()=>{}));
+const modal=document.getElementById('modal');document.getElementById('downloadBtn').onclick=()=>{post({type:'event',event_name:'download_intent',tester_id:tester||null,metadata:{version:'0.17.0'}}).catch(()=>{});modal.classList.add('open')};document.getElementById('closeBtn').onclick=()=>modal.classList.remove('open');modal.onclick=e=>{if(e.target===modal)modal.classList.remove('open')};
+document.getElementById('submitBtn').onclick=async()=>{const s=document.getElementById('status');s.className='status';s.textContent='กำลังตรวจข้อมูล…';const name=document.getElementById('name').value.trim(),email=document.getElementById('email').value.trim(),role=document.getElementById('role').value,org=document.getElementById('org').value.trim();if(!name||!email||!role){s.className='status err';s.textContent='กรอก Name / Email / Role ให้ครบ';return}if(!document.getElementById('consent').checked){s.className='status err';s.textContent='ต้องยินยอมก่อนดาวน์โหลด';return}try{const t=await post({type:'tester',name,email,role,organization:org,consent:true,contact_ok:document.getElementById('contact').checked,company_website:document.getElementById('companyWebsite').value});tester=t.tester_id;set('bimnix_demo_tester',tester);refreshFeedback();await post({type:'event',event_name:'download',tester_id:tester,metadata:{version:'0.17.0',file:'BIMNIX-0.17.0-PUBLIC-DEMO.html'}});s.className='status ok';s.textContent='บันทึกแล้ว — กำลังเปิดไฟล์ดาวน์โหลด';setTimeout(()=>location.href=DOWNLOAD_URL,250)}catch(e){s.className='status err';s.textContent=e.message==='invalid_email'?'Email ไม่ถูกต้อง':'ยังดาวน์โหลดไม่ได้: '+e.message}}
+};
+})();
+</script>
+</body></html>
