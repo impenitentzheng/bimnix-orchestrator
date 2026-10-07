@@ -45,7 +45,6 @@
 (()=>{
 const ENDPOINT='https://givcocwxdjvrvdyvgtvu.supabase.co/functions/v1/demo-intake';
 const FEEDBACK='https://givcocwxdjvrvdyvgtvu.supabase.co/functions/v1/demo-feedback';
-// Temporary Drive mirror. Replace with a public direct-download mirror before IG launch.
 const DOWNLOAD_URL='https://drive.google.com/uc?export=download&id=1N78n3ARN7yH0qaRLyIyUpoj9RWhET2sy';
 const qs=new URLSearchParams(location.search); const U={utm_source:qs.get('utm_source'),utm_medium:qs.get('utm_medium'),utm_campaign:qs.get('utm_campaign')};
 const source=U.utm_source||((document.referrer||'').includes('instagram')?'instagram':(document.referrer||'').includes('facebook')?'facebook':'direct');
@@ -58,7 +57,6 @@ const feedback=document.getElementById('feedbackBtn'); function refreshFeedback(
 feedback.addEventListener('click',()=>post({type:'event',event_name:'feedback_open',tester_id:tester||null,metadata:{surface:'demo_landing'}}).catch(()=>{}));
 const modal=document.getElementById('modal');document.getElementById('downloadBtn').onclick=()=>{post({type:'event',event_name:'download_intent',tester_id:tester||null,metadata:{version:'0.17.0'}}).catch(()=>{});modal.classList.add('open')};document.getElementById('closeBtn').onclick=()=>modal.classList.remove('open');modal.onclick=e=>{if(e.target===modal)modal.classList.remove('open')};
 document.getElementById('submitBtn').onclick=async()=>{const s=document.getElementById('status');s.className='status';s.textContent='กำลังตรวจข้อมูล…';const name=document.getElementById('name').value.trim(),email=document.getElementById('email').value.trim(),role=document.getElementById('role').value,org=document.getElementById('org').value.trim();if(!name||!email||!role){s.className='status err';s.textContent='กรอก Name / Email / Role ให้ครบ';return}if(!document.getElementById('consent').checked){s.className='status err';s.textContent='ต้องยินยอมก่อนดาวน์โหลด';return}try{const t=await post({type:'tester',name,email,role,organization:org,consent:true,contact_ok:document.getElementById('contact').checked,company_website:document.getElementById('companyWebsite').value});tester=t.tester_id;set('bimnix_demo_tester',tester);refreshFeedback();await post({type:'event',event_name:'download',tester_id:tester,metadata:{version:'0.17.0',file:'BIMNIX-0.17.0-PUBLIC-DEMO.html'}});s.className='status ok';s.textContent='บันทึกแล้ว — กำลังเปิดไฟล์ดาวน์โหลด';setTimeout(()=>location.href=DOWNLOAD_URL,250)}catch(e){s.className='status err';s.textContent=e.message==='invalid_email'?'Email ไม่ถูกต้อง':'ยังดาวน์โหลดไม่ได้: '+e.message}}
-};
 })();
 </script>
 </body></html>
