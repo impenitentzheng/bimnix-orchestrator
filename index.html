@@ -4,34 +4,77 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>BIMNIX 0.19 — Experimental Demo</title>
-<meta name="description" content="BIMNIX 0.19 Experimental Demo — preparing release after final validation." />
+<meta name="description" content="BIMNIX 0.19 Experimental Demo — prelaunch page for the Coordinate / Georeferencing release." />
 <meta name="robots" content="noindex,nofollow" />
 <style>
-:root{--bg:#0d0d0d;--card:#151515;--line:#2b2b2b;--text:#f3f3f3;--muted:#aaa;--accent:#ff6a00;--ok:#7ed993;--warn:#f0c36b}
-*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--text);font:15px/1.6 Arial,"Noto Sans Thai",sans-serif}
-a{color:inherit}.wrap{max-width:1000px;margin:auto;padding:28px 18px 64px}.nav{display:flex;justify-content:space-between;align-items:center;margin-bottom:58px}.brand{font-weight:900;letter-spacing:.1em}.tag{font-size:12px;color:var(--warn);border:1px solid #594722;border-radius:999px;padding:5px 10px;background:#211b10}.hero{max-width:800px}.eyebrow{color:var(--accent);font-weight:800;letter-spacing:.08em;font-size:12px}.hero h1{font-size:clamp(42px,7vw,78px);line-height:.98;margin:12px 0 20px}.hero p{font-size:18px;color:#c9c9c9;max-width:720px}.actions{display:flex;gap:10px;flex-wrap:wrap;margin:30px 0}.btn{border:1px solid #444;background:#1c1c1c;color:white;border-radius:12px;padding:12px 16px;font-weight:800;text-decoration:none}.btn.primary{background:var(--accent);border-color:var(--accent)}.btn.disabled{opacity:.55;cursor:not-allowed}.status{margin:22px 0 0;padding:14px 16px;border:1px solid #4a3b1d;border-radius:14px;background:#17140d;color:#e7cf95}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:38px}.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px}.card b{display:block;font-size:18px;margin-bottom:6px}.card span{color:var(--muted)}.note{margin-top:30px;color:var(--muted);font-size:13px}.foot{margin-top:52px;padding-top:18px;border-top:1px solid var(--line);color:#777;font-size:12px}@media(max-width:720px){.grid{grid-template-columns:1fr}.nav{margin-bottom:38px}}
+:root{--bg:#0b0b0b;--panel:#121212;--panel2:#171717;--line:#2a2a2a;--text:#f3f3f3;--muted:#9d9d9d;--accent:#ff6a00;--ok:#73d391;--warn:#efc068;--bad:#ff7b7b}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.6 Arial,"Noto Sans Thai",sans-serif}a{color:inherit}.wrap{max-width:1080px;margin:auto;padding:24px 20px 72px}.nav{display:flex;justify-content:space-between;align-items:center;gap:20px;margin-bottom:54px}.brand{font-weight:950;letter-spacing:.11em;font-size:18px}.brand .nix{color:var(--accent)}.tag{font-size:12px;color:var(--warn);border:1px solid #5a4721;border-radius:999px;padding:6px 11px;background:#201a0f;white-space:nowrap}.eyebrow{color:var(--accent);font-weight:900;letter-spacing:.1em;font-size:12px}.hero{max-width:880px}.hero h1{font-size:clamp(42px,7vw,80px);line-height:.95;margin:13px 0 20px;letter-spacing:-.04em}.hero p{font-size:18px;color:#c7c7c7;max-width:800px}.actions{display:flex;gap:10px;flex-wrap:wrap;margin:28px 0}.btn{border:1px solid #444;background:#1b1b1b;color:#fff;border-radius:12px;padding:12px 16px;font-weight:850;text-decoration:none}.btn.primary{background:var(--accent);border-color:var(--accent)}.btn.disabled{opacity:.52;cursor:not-allowed}.release{margin-top:24px;padding:17px 18px;border:1px solid #4e3e1f;border-radius:15px;background:#17140d}.release strong{color:#f2d693}.release small{display:block;color:#a78e5d;margin-top:5px}.section{margin-top:52px}.section h2{font-size:26px;margin:0 0 16px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px;min-height:140px}.card b{display:block;font-size:18px;margin-bottom:6px}.card span{color:var(--muted)}.evidence{display:grid;grid-template-columns:1.2fr .8fr;gap:12px}.proof{background:var(--panel2);border:1px solid var(--line);border-radius:16px;padding:18px}.proof-row{display:flex;justify-content:space-between;gap:16px;padding:9px 0;border-bottom:1px solid #252525}.proof-row:last-child{border-bottom:0}.proof-row span:first-child{color:#c7c7c7}.ok{color:var(--ok);font-weight:850}.warn{color:var(--warn);font-weight:850}.timeline{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.step{border:1px solid var(--line);border-radius:14px;padding:14px;background:#101010}.step .n{color:var(--accent);font-size:12px;font-weight:900}.step b{display:block;margin-top:4px}.step p{color:var(--muted);margin:5px 0 0;font-size:13px}.note{margin-top:26px;color:var(--muted);font-size:13px}.foot{margin-top:58px;padding-top:18px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:20px;color:#747474;font-size:12px;flex-wrap:wrap}@media(max-width:800px){.grid,.timeline{grid-template-columns:1fr 1fr}.evidence{grid-template-columns:1fr}.nav{margin-bottom:38px}}@media(max-width:560px){.grid,.timeline{grid-template-columns:1fr}.hero h1{font-size:48px}.wrap{padding-left:16px;padding-right:16px}}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <div class="nav"><div class="brand">BIMNIX</div><div class="tag">0.19 · PREPARING RELEASE</div></div>
+  <div class="nav">
+    <div class="brand">BIM<span class="nix">NIX</span></div>
+    <div class="tag">0.19 · RELEASE PREP</div>
+  </div>
+
   <section class="hero">
-    <div class="eyebrow">OPENBIM · EXPERIMENTAL</div>
-    <h1>Try it.<br>Break it.<br>Tell me why.</h1>
-    <p>BIMNIX คือ experimental BIM workbench ที่พัฒนาแบบ evidence-first สำหรับ workflow จากแบบ → โมเดล → Quantity → BOQ → Comparison → Handoff พร้อมฐาน openBIM / IFC และ Coordinate / Georeferencing Foundation ใน 0.19</p>
+    <div class="eyebrow">OPENBIM · EXPERIMENTAL · EVIDENCE-FIRST</div>
+    <h1>Build it.<br>Validate it.<br>Then release it.</h1>
+    <p>BIMNIX 0.19 เพิ่ม Coordinate / Georeferencing Foundation ให้ workflow จากแบบ → โมเดล → Quantity → BOQ → Comparison → Handoff โดยยังยึดกติกาเดิม: ไม่เดา CRS, ไม่สร้างค่าที่ไม่มีหลักฐาน และต้องแยกสิ่งที่ “รู้” ออกจากสิ่งที่ “ยังไม่ยืนยัน”</p>
     <div class="actions">
-      <span class="btn primary disabled" aria-disabled="true">Download BIMNIX 0.19 — after release gate</span>
+      <span class="btn primary disabled" aria-disabled="true">Download 0.19 — locked until exact release build</span>
+      <a class="btn" href="#evidence">See release evidence</a>
       <a class="btn" href="privacy.html">Privacy</a>
     </div>
-    <div class="status"><b>Release lock:</b> หน้าเว็บเตรียมพร้อมแล้ว แต่ยังไม่เปิดดาวน์โหลดจนกว่า BIMNIX 0.19 จะผ่าน regression, external validation และ release gate ครบ</div>
-    <div class="grid">
-      <div class="card"><b>Local-first</b><span>เป้าหมาย Demo คือไฟล์ที่เปิดได้บน Chrome / Edge โดยไม่ต้องติดตั้งระบบ BIM ขนาดใหญ่</span></div>
-      <div class="card"><b>Evidence-first</b><span>สิ่งที่ claim ต้องมี test, independent validation หรือข้อจำกัดที่ระบุชัด</span></div>
-      <div class="card"><b>Not production-ready</b><span>Experimental Demo ไม่ใช่ซอฟต์แวร์ที่รับรองให้ใช้แทนการตรวจโดย QS / วิศวกร / สถาปนิก / ทีมโครงการ</span></div>
+    <div class="release">
+      <strong>Prelaunch status: external IFC gate passed; release package is still locked.</strong>
+      <small>Case A / A-site และ Case B / rotated Case B ผ่านผลที่คาดไว้ใน buildingSMART Validation Service แล้ว ขณะนี้ยังรอ exact release-build regression / Windows review ก่อนเปิดดาวน์โหลดสาธารณะ</small>
     </div>
-    <div class="note">เมื่อเปิด Demo จริง จะมีการขอข้อมูลผู้ทดสอบและความยินยอมก่อนดาวน์โหลด เพื่อวัดการใช้งานและเก็บ feedback อย่างมีที่มา · ฐานข้อมูล BIMNIX ไม่ออกแบบให้เก็บ IP address เป็น field ของเรา แต่ผู้ให้บริการ hosting/network อาจมี technical logs ตามนโยบายของผู้ให้บริการ</div>
   </section>
-  <div class="foot">BIMNIX 0.19 Experimental Demo · release preparation page</div>
+
+  <section class="section">
+    <h2>What 0.19 adds</h2>
+    <div class="grid">
+      <div class="card"><b>Coordinate foundation</b><span>กรอบพิกัดกลางสำหรับ building-local, project, survey grid และ reference sources โดยรักษา legacy behavior ที่ตั้งใจไว้</span></div>
+      <div class="card"><b>IFC georeferencing</b><span>IfcProjectedCRS + IfcMapConversion เมื่อข้อมูลครบและผู้ใช้ยืนยันแล้ว พร้อม Case A / A-site เมื่อยังไม่ควรอ้าง georeferencing</span></div>
+      <div class="card"><b>Far-origin handling</b><span>ตรวจพิกัดไกล เสนอ base shift ให้ผู้ใช้ยืนยัน และแก้ปัญหา DXF พิกัดใหญ่โดยไม่ย้ายข้อมูลอัตโนมัติ</span></div>
+      <div class="card"><b>No CRS guessing</b><span>EPSG, MapUnit, True North และ vertical relation ต้องมาจากข้อมูลที่มีที่มา ไม่เติมค่าจากการคาดเดา</span></div>
+      <div class="card"><b>Round-trip discipline</b><span>CRS จาก IFC ภายนอกถูก stage เป็นข้อมูลที่ยังไม่ยืนยัน; BIMNIX จะไม่ยกสถานะความเชื่อมั่นให้ไฟล์ภายนอกเอง</span></div>
+      <div class="card"><b>QTO invariants</b><span>การเปลี่ยนกรอบพิกัดไม่ควรเปลี่ยน geometry-local หรือ quantities และถูกตรวจแยกจากการแสดงผล</span></div>
+    </div>
+  </section>
+
+  <section class="section" id="evidence">
+    <h2>Release evidence</h2>
+    <div class="evidence">
+      <div class="proof">
+        <div class="proof-row"><span>buildingSMART — Case B EPSG:32647</span><span class="ok">STEP ✓ · Schema ✓ · Normative ✓ · Industry ✓</span></div>
+        <div class="proof-row"><span>buildingSMART — Case B rotated 30°</span><span class="ok">STEP ✓ · Schema ✓ · Normative ✓ · Industry ✓</span></div>
+        <div class="proof-row"><span>buildingSMART — Case A / A-site</span><span class="warn">Core checks ✓ · expected Industry warning</span></div>
+        <div class="proof-row"><span>S0 Scale experiment</span><span class="ok">Scale = 0.001 validated</span></div>
+        <div class="proof-row"><span>Current internal candidate</span><span class="ok">240 / 240 tests · 407 / 407 e2e evidence reported</span></div>
+      </div>
+      <div class="proof">
+        <div class="eyebrow">RELEASE LOCK</div>
+        <h3 style="font-size:24px;margin:8px 0 8px">Why download is still closed</h3>
+        <p style="color:var(--muted);margin:0">Public Demo จะเปิดจาก exact 0.19 release artifact เท่านั้น หลัง Windows review, final regression และ release metadata ตรงกับ build ที่ปล่อยจริง เพื่อไม่ให้หน้าเว็บชี้ไปที่ candidate คนละตัวกับหลักฐาน validation</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Launch switch</h2>
+    <div class="timeline">
+      <div class="step"><div class="n">01</div><b>Exact release build</b><p>ล็อก source commit + artifact hash</p></div>
+      <div class="step"><div class="n">02</div><b>Final regression</b><p>รัน test / e2e / oracle บนตัวที่จะปล่อยจริง</p></div>
+      <div class="step"><div class="n">03</div><b>Attach demo artifact</b><p>เชื่อมไฟล์ 0.19 เข้ากับ download gateway</p></div>
+      <div class="step"><div class="n">04</div><b>Open public demo</b><p>เปิด consent + telemetry + feedback flow</p></div>
+    </div>
+    <div class="note">Experimental Demo ไม่ใช่ production-ready software และไม่ควรใช้ผลลัพธ์แทนการตรวจโดย QS / วิศวกร / สถาปนิก / ผู้รับผิดชอบโครงการ</div>
+  </section>
+
+  <div class="foot"><span>BIMNIX 0.19 Experimental Demo · prelaunch</span><span>BIM · CONSTRUCTION · AI</span></div>
 </div>
 <script>
 (()=>{
@@ -40,7 +83,7 @@ const qs=new URLSearchParams(location.search);const U={utm_source:qs.get('utm_so
 const source=U.utm_source||((document.referrer||'').includes('instagram')?'instagram':(document.referrer||'').includes('facebook')?'facebook':'direct');
 const get=k=>{try{return localStorage.getItem(k)}catch{return null}},set=(k,v)=>{try{localStorage.setItem(k,v)}catch{}};
 let sid=get('bimnix_demo_session');if(!sid){sid=crypto.randomUUID?.()||('s-'+Date.now()+'-'+Math.random().toString(36).slice(2));set('bimnix_demo_session',sid)}
-fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({type:'event',event_name:get('bimnix_demo_site_seen')?'return_visit':'visit',session_id:sid,source,...U,page_path:location.pathname,referrer:document.referrer||null,metadata:{surface:'prelaunch_019'}})}).catch(()=>{});set('bimnix_demo_site_seen','1');
+fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({type:'event',event_name:get('bimnix_demo_site_seen')?'return_visit':'visit',session_id:sid,source,...U,page_path:location.pathname,referrer:document.referrer||null,metadata:{surface:'prelaunch_019',release_locked:true}})}).catch(()=>{});set('bimnix_demo_site_seen','1');
 })();
 </script>
 </body></html>
