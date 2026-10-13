@@ -1,0 +1,47 @@
+# BIMNIX capability registry.
+# Principle: integrations are unavailable until explicitly verified.
+
+[agents.chatgpt]
+role = "orchestrator_editorial_decision"
+status = "manual"
+capabilities = ["route_event", "editorial_decision", "owner_summary"]
+
+[agents.codex]
+role = "automation_engineer"
+status = "verified_local"
+capabilities = ["event_bus", "state_machine", "tests", "logging", "github_pr_preparation"]
+
+[agents.claude]
+role = "bim_technical_evidence"
+status = "unverified"
+capabilities = []
+
+[agents.notebooklm]
+role = "source_grounded_knowledge"
+status = "unverified"
+capabilities = []
+
+[agents.gemini]
+role = "multimodal_google"
+status = "unverified"
+capabilities = []
+
+[agents.deepseek]
+role = "batch_low_cost_processing"
+status = "unverified"
+capabilities = []
+
+[agents.perplexity]
+role = "web_discovery"
+status = "unverified"
+capabilities = []
+
+[integrations.meta_instagram]
+status = "unverified"
+official_support_notes = "Enable only after confirming an official Meta/Instagram publishing API path for the target account type and permissions."
+capabilities = []
+
+[integrations.github]
+status = "unverified"
+official_support_notes = "Enable only after connecting a repository and confirming PR permissions."
+capabilities = []
