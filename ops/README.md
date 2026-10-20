@@ -26,8 +26,18 @@ Status values are deliberately small: `ACTIVE`, `BLOCKED`, `HOLD`, `DONE`, `UNKN
 
 The dashboard never treats missing data as healthy. Missing/invalid fields render as `UNKNOWN`.
 
+## Verification
+
+R05 has structural validation plus browser E2E coverage. The browser test opens the actual dashboard in headless Chromium and verifies:
+- the synthetic repository example renders through the real browser code path;
+- a private/local JSON file can be loaded without committing its contents to this public repository;
+- KPI/task/event values update from the selected local state;
+- plaintext HTTP endpoint mode is rejected and HTTPS remains mandatory.
+
+This verifies the runtime loading boundary, not a production private endpoint deployment. Live endpoint hosting/authentication remains a separate private infrastructure decision.
+
 ## Architecture
 
 Resource Registry -> Heartbeat -> Task Registry -> Event Log -> Dashboard.
 
-Alerts and auto-routing are intentionally outside R05. This R05 establishes an inspectable shared-state contract first.
+Alerts and auto-routing are intentionally outside R05. R05 establishes an inspectable shared-state contract and a verified local/private-state viewing path first.
