@@ -1,0 +1,17 @@
+{
+  "generated_at": "2026-10-20T17:30:00+07:00",
+  "resources": [
+    {"id":"builder-01","kind":"agent","status":"ACTIVE","heartbeat_at":"2026-10-20T17:29:00+07:00","quota":{"remaining_percent":38,"resets_at":"2026-10-21T06:30:00+07:00"}},
+    {"id":"reviewer-01","kind":"agent","status":"HOLD","heartbeat_at":"2026-10-20T16:55:00+07:00"},
+    {"id":"workstation-a","kind":"device","status":"ACTIVE","heartbeat_at":"2026-10-20T17:29:30+07:00"}
+  ],
+  "tasks": [
+    {"id":"TASK-001","title":"Synthetic production task","priority":"P0","status":"BLOCKED","owner":"builder-01","blocker":"quota","resume_at":"2026-10-21T06:30:00+07:00"},
+    {"id":"TASK-002","title":"Synthetic release gate","priority":"P1","status":"ACTIVE","owner":"reviewer-01"},
+    {"id":"TASK-003","title":"Synthetic completed task","priority":"P2","status":"DONE","owner":"builder-01"}
+  ],
+  "events": [
+    {"at":"2026-10-20T17:28:00+07:00","type":"BLOCKER","subject":"TASK-001","message":"Execution paused by quota gate."},
+    {"at":"2026-10-20T17:20:00+07:00","type":"STATE","subject":"TASK-003","message":"Task closed with evidence."}
+  ]
+}
