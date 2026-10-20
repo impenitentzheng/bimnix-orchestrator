@@ -1,0 +1,47 @@
+name: CEO Dashboard R05 Verification
+
+on:
+  push:
+    branches:
+      - feature/ceo-resource-dashboard-r05
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout exact candidate
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate state contract and dashboard privacy boundary
+        run: node ops/validate-dashboard.mjs
+      - name: Install browser test dependency
+        run: npm install --no-save playwright@1.55.0
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Run dashboard browser E2E
+        run: |
+          python -m http.server 8000 --bind 127.0.0.1 > /tmp/dashboard-http.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill $SERVER_PID || true' EXIT
+          for i in $(seq 1 20); do
+            if curl -fsS http://127.0.0.1:8000/ops/dashboard.html >/dev/null; then break; fi
+            sleep 0.25
+          done
+          DASHBOARD_BASE_URL=http://127.0.0.1:8000 node ops/e2e-dashboard.mjs
+      - name: Record exact candidate SHA
+        run: echo "candidate_sha=${GITHUB_SHA}"
