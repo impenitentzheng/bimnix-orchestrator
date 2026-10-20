@@ -1,0 +1,29 @@
+name: CEO Dashboard R05 Verification
+
+on:
+  push:
+    branches:
+      - feature/ceo-resource-dashboard-r05
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout exact candidate
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Validate state contract and dashboard privacy boundary
+        run: node ops/validate-dashboard.mjs
+      - name: Record exact candidate SHA
+        run: echo "candidate_sha=${GITHUB_SHA}"
